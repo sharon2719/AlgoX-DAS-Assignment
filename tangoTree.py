@@ -1,139 +1,80 @@
 class Node:
     def __init__(self, key):
-        self.key = key
-        self.left = None
-        self.right = None
-        self.parent = None
-        self.preferred_child = None  # This keeps track of the preferred path
+        self.key = key # Value/key stored in the node
+        self.right = None # pointer to the right child
+        self.left = None # pointer to the left child
+        self.parent = None #pinter to the parent node
 
-class TangoTree:
+class SimpleNumberTree:
     def __init__(self):
-        self.root = None
-
-    def _left_rotate(self, x):
-        y = x.right
-        x.right = y.left
-        if y.left:
-            y.left.parent = x
-        y.parent = x.parent
-        if not x.parent:
-            self.root = y
-        elif x == x.parent.left:
-            x.parent.left = y
-        else:
-            x.parent.right = y
-        y.left = x
-        x.parent = y
-
-    def _right_rotate(self, x):
-        y = x.left
-        x.left = y.right
-        if y.right:
-            y.right.parent = x
-        y.parent = x.parent
-        if not x.parent:
-            self.root = y
-        elif x == x.parent.right:
-            x.parent.right = y
-        else:
-            x.parent.left = y
-        y.right = x
-        x.parent = y
-
-    def _splay(self, x):
-        while x.parent:
-            if not x.parent.parent:
-                if x == x.parent.left:
-                    self._right_rotate(x.parent)
-                else:
-                    self._left_rotate(x.parent)
-            elif x == x.parent.left and x.parent == x.parent.parent.left:
-                self._right_rotate(x.parent.parent)
-                self._right_rotate(x.parent)
-            elif x == x.parent.right and x.parent == x.parent.parent.right:
-                self._left_rotate(x.parent.parent)
-                self._left_rotate(x.parent)
-            elif x == x.parent.right and x.parent == x.parent.parent.left:
-                self._left_rotate(x.parent)
-                self._right_rotate(x.parent)
-            else:
-                self._right_rotate(x.parent)
-                self._left_rotate(x.parent)
+        self.root = None #Initialize the root of the tree as None
 
     def insert(self, key):
-        node = Node(key)
-        y = None
-        x = self.root
-
-        while x:
-            y = x
-            if node.key < x.key:
-                x = x.left
+        """Inset a new key into the tree"""
+        new_node = Node(key)
+        if not self.root:
+            self.root = new_node
+            return
+        
+        current = self.root
+        while True:
+            if key < current.key:
+                if not current.left:
+                    current.left = new_node
+                    new_node.parent = current
+                    break
+                current = current.left
+            else: # Go to the right subtree
+                if not current.right:
+                    current.right = new_node
+                    new_node.parent = current
+                    break
+                current = current.right
+    
+    def serch(self, key):
+        """Search for a key in the tree"""
+        current = self.root
+        while current:
+            if key == current.key:
+                return current # key is found
+            elif key < current.key:
+                current = current.left # Search in the left subtree
             else:
-                x = x.right
+                current = current.right # Search in the right subtree
+        return None # No key found
+    
+    def in_order_traversal(self, node, result):
+        """Perform in-order-traversal of the tree"""
 
-        node.parent = y
-        if not y:
-            self.root = node
-        elif node.key < y.key:
-            y.left = node
-        else:
-            y.right = node
-
-        self._splay(node)
-        return node
-
-    def search(self, key):
-        node = self._search_tree(self.root, key)
         if node:
-            self._splay(node)
-        return node
-
-    def _search_tree(self, node, key):
-        if not node or key == node.key:
-            return node
-        if key < node.key:
-            return self._search_tree(node.left, key)
-        else:
-            return self._search_tree(node.right, key)
-
-    def _in_order_traversal(self, node, result):
-        if node:
-            self._in_order_traversal(node.left, result)
+            self.in_order_traversal(node.left, result)
             result.append(node.key)
-            self._in_order_traversal(node.right, result)
-
-    def in_order_traversal(self):
+            self.in_order_traversal(node.right, result)
+    
+    def get_in_order_traversal(self):
+        """Get the in-order traversal of the tree"""
         result = []
-        self._in_order_traversal(self.root, result)
+        self.in_order_traversal(self.root, result)
         return result
+    
 
-# Example scenario: Autocomplete Feature in Search Engines
+# usage example
 if __name__ == "__main__":
-    autocomplete_tree = TangoTree()
+    tree = SimpleNumberTree()
 
-    # Insert search suggestions into the system
-    suggestions = ["apple", "app", "application", "apricot", "banana", "berry"]
-    for suggestion in suggestions:
-        autocomplete_tree.insert(suggestion)
+    # Inser elemets into the tree
+    elements = [12,4,50,5,23,17]
+    for element in elements:
+        tree.insert(element)
+    
+    print(f"In order traversal afer insertion: ", tree.get_in_order_traversal())
+    # Expected output: In order traversal afer insertion:  [4, 5, 12, 17, 23, 50]
 
-    print("In-order traversal after insertions:", autocomplete_tree.in_order_traversal())
-    # Expected output: ['app', 'apple', 'application', 'apricot', 'banana', 'berry']
+# Searching for an element inside the tree
+    search_result = tree.serch(4)
+    print(f"Search result: {search_result.key if search_result else 'Not found'}")
+    # Expected output if 4 is found: Search result: 4
 
-    # User selects "application"
-    search_node = autocomplete_tree.search("application")
-    print("Searched suggestion:", search_node.key if search_node else "Not found")
-    print("In-order traversal after selecting 'application':", autocomplete_tree.in_order_traversal())
-    # Expected output: "application" should be closer to the root after this search.
-
-    # User selects "banana"
-    search_node = autocomplete_tree.search("banana")
-    print("Searched suggestion:", search_node.key if search_node else "Not found")
-    print("In-order traversal after selecting 'banana':", autocomplete_tree.in_order_traversal())
-    # Expected output: "banana" should be moved closer to the root.
-
-    # User selects "app"
-    search_node = autocomplete_tree.search("app")
-    print("Searched suggestion:", search_node.key if search_node else "Not found")
-    print("In-order traversal after selecting 'app':", autocomplete_tree.in_order_traversal())
-    # Expected output: "app" should be closer to the root.
+ # Searching for a non-existant element inside the tree
+    search_result = tree.serch(100)
+    # Output when not found: Search result: Not found
