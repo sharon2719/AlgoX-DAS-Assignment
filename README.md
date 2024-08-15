@@ -23,3 +23,12 @@ They are designed to work well with systems that deal with large blocks of data,
 B-trees are commonly used in databases and file systems because they can efficiently handle large amounts of data and keep it organized.
 They are perfect for situations where the data structure needs to stay balanced, even when adding or removing a lot of data.
 B-trees are also ideal for systems that need to access large chunks of data at once, like reading from or writing to a disk. A good real-life example is searching for a book according to its ISBN as shown [here](b-tree.py) 
+
+## 3. Tango Trees
+### Characteristics:
+1. Self-Adjusting Structure: Tango trees maintain a set of dynamic paths know as `preferred paths`, which represent the most recent accessed parts of the tree and the tree structure is adjusted to optimize access to these paths.
+2. Competitive Access Time: Tango trees perfomance is within a constant factor of the optimak statis binary tree of any sequence of operations, making then to be known to be `O(log n) competitive`.
+
+### Applications
+ 1. Network Routing Table: Tango trees can optimize routing tables by keeping frequently accessed routes closer to the top, thus speeding up the lookup process and improving packet forwarding efficiency.
+2. Caching Systems: Tango trees can be employed to manage cache entries, ensuring that frequently accessed data is quicker to retrieve. This helps in optimizing the performance of caching mechanisms by minimizing the access time for commonly requested data.
