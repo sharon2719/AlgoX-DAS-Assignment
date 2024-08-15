@@ -24,8 +24,8 @@ They are designed to work well with systems that deal with large blocks of data,
 ### Applications:
 
 B-trees are commonly used in databases and file systems because they can efficiently handle large amounts of data and keep it organized.
-They are perfect for situations where the data structure needs to stay balanced, even when adding or removing a lot of data.
-B-trees are also ideal for systems that need to access large chunks of data at once, like reading from or writing to a disk. A good real-life example is searching for a book according to its ISBN as shown [here](b-tree.py)
+They are perfect for situations where the data structure needs to stay balanced, even when adding or removing a lot of data.B-trees are also ideal for systems that need to access large chunks of data at once, like reading from or writing to a disk. A good real-life example is searching for a book according to its ISBN as shown [here](b-tree.py)
+
 
 ## 3. 2-3 Tree
 
@@ -93,3 +93,23 @@ BSTs are widely used in applications that require dynamic data structure managem
 Database Indexing: BSTs can be used to implement indexes, allowing quick search operations within databases.
 Memory Management: Operating systems use BSTs to manage memory and prioritize processes.
 Autocomplete Systems: BSTs can be used to implement autocomplete suggestions, by storing and efficiently searching through a list of words.
+
+
+## 3. Tango Trees
+### Characteristics:
+i. Self-Adjusting Structure: Tango trees maintain a set of dynamic paths know as `preferred paths`, which represent the most recent accessed parts of the tree and the tree structure is adjusted to optimize access to these paths.
+ii. Competitive Access Time: Tango trees perfomance is within a constant factor of the optimak statis binary tree of any sequence of operations, making then to be known to be `O(log n) competitive`.
+
+### Applications
+i. Network Routing Table: Tango trees can optimize routing tables by keeping frequently accessed routes closer to the top, thus speeding up the lookup process and improving packet forwarding efficiency.
+ii. Caching Systems: Tango trees can be employed to manage cache entries, ensuring that frequently accessed data is quicker to retrieve. This helps in optimizing the performance of caching mechanisms by minimizing the access time for commonly requested data.
+
+4. Weight-Balanced Tree
+### Characteristics
+i. Balance Condition: In WBT, a node is considered balanced if the ratio between the weights of its left and right subtrees satisfies a predefined condition. A common balance condition is that the weight of one subtree should not exceed the weight of the other subtree by more than a certain factor (usually a constant like 2).
+ii. Rotation: To maintain balance after insertions or deletions, WBTs use rotations (just like AVL or Red-Black trees). The idea is to perform a rotation that redistributes the nodes to maintain the balance condition.
+
+### Applications
+
+- WBTs are mainly used in real-time systems, Game and AI, and Netwotk Routes
+- These applications benefit from the properties of WBTs, such as efficient balancing based on weights, which ensures that operations remain fast even as the dataset changes. By maintaining logarithmic time complexity for operations, WBTs are suitable for a wide range of dynamic and performance-critical applications.
