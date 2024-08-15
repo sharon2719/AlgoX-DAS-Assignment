@@ -1,5 +1,7 @@
 # Comprehensive Python Implementations of Binary Trees
+
 ## 1. Splay Trees
+
 ### Characteristics:
 
 Splay trees are a type of binary search tree that adjusts itself automatically.
@@ -12,6 +14,7 @@ Splay trees are useful for speeding up access to data that is used repeatedly, l
 They are especially effective in situations where some data is accessed much more frequently than others (like the 80-20 rule, where 80% of the accesses are to 20% of the data).A good example is searching for frequently used contact as seen in [here](splay-tree.py)
 
 ## 2. B-trees
+
 ### Characteristics:
 
 B-trees are a kind of balanced tree that keeps data sorted and allows you to `search`, `add`, and `delete` data quickly.
@@ -21,8 +24,76 @@ They are designed to work well with systems that deal with large blocks of data,
 ### Applications:
 
 B-trees are commonly used in databases and file systems because they can efficiently handle large amounts of data and keep it organized.
-They are perfect for situations where the data structure needs to stay balanced, even when adding or removing a lot of data.
-B-trees are also ideal for systems that need to access large chunks of data at once, like reading from or writing to a disk. A good real-life example is searching for a book according to its ISBN as shown [here](b-tree.py) 
+They are perfect for situations where the data structure needs to stay balanced, even when adding or removing a lot of data.B-trees are also ideal for systems that need to access large chunks of data at once, like reading from or writing to a disk. A good real-life example is searching for a book according to its ISBN as shown [here](b-tree.py)
+
+
+## 3. 2-3 Tree
+
+### Characteristics:
+
+A 2-3 Tree is a special kind of binary search tree that keeps itself balanced. In this tree:
+
+- Every node (except the leaves) can have 2 or 3 children.
+- All the leaves (end nodes) are at the same level, which means the tree is balanced.
+
+### Applications:
+
+2-3 Trees are especially useful in database systems where we need to keep data sorted and balanced, making search operations faster. They are often used in file systems to manage large amounts of data efficiently.
+
+### Python Implementation:
+
+You can find the Python code for the 2-3 Tree [here](two_three_tree.py).
+
+## 4. 2-3-4 Tree
+
+### Characteristics:
+
+A 2-3-4 Tree is an extension of the 2-3 Tree. It allows each node to have 2, 3, or 4 children. This tree stays balanced by splitting nodes as new elements are added, which ensures efficient search and insert operations.
+
+### Applications:
+
+2-3-4 Trees are used in databases and file systems, particularly in implementations of B-trees. They are ideal for managing large datasets where balanced search times are crucial.
+
+### Python Implementation:
+
+You can find the Python code for the 2-3-4 Tree [here](two_three_four_tree.py).
+
+## Red-Black Trees
+
+### Characteristics
+Red-Black Trees are a type of self-balancing binary search tree where each node contains an extra bit for denoting the color of the node, either red or black. This ensures the tree remains balanced during insertions and deletions, guaranteeing that the longest path from the root to a leaf is no more than twice as long as the shortest path.
+
+### Key properties include
+
+Root Property: The root is always black.
+Red Property: Red nodes cannot have red children (no two reds in a row).
+Black Property: Every path from a node to its descendant NULL nodes must have the same number of black nodes.
+
+### Applications
+Red-Black Trees are commonly used in scenarios where maintaining a balanced tree is crucial for ensuring optimal time complexity for insertion, deletion, and lookup operations. Typical use cases include:
+
+Associative Arrays: Many programming languages and libraries use Red-Black Trees to implement dictionaries or maps, ensuring fast data retrieval.
+Linux Kernel: Red-Black Trees are utilized in the Linux kernel to manage process scheduling efficiently.
+Databases: Red-Black Trees are often used in database indexing to ensure quick lookups and modifications.
+
+
+## Binary Search Trees (BST)
+
+### Characteristics:
+A Binary Search Tree (BST) is a type of binary tree where each node has the following properties:
+
+Left Subtree Property: All nodes in the left subtree of a node contain values less than the node’s value.
+Right Subtree Property: All nodes in the right subtree of a node contain values greater than the node’s value.
+No Duplicates: BSTs typically do not allow duplicate values. If duplicates are allowed, they are usually stored in a specific way (e.g., all duplicates in the right subtree).
+BSTs are useful for efficient searching, insertion, and deletion operations, typically with a time complexity of O(log n) in the average case.
+
+## Applications
+BSTs are widely used in applications that require dynamic data structure management with quick lookup, insertion, and deletion operations. Some common use cases include:
+
+Database Indexing: BSTs can be used to implement indexes, allowing quick search operations within databases.
+Memory Management: Operating systems use BSTs to manage memory and prioritize processes.
+Autocomplete Systems: BSTs can be used to implement autocomplete suggestions, by storing and efficiently searching through a list of words.
+
 
 ## 3. Tango Trees
 ### Characteristics:
