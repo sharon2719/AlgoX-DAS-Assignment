@@ -113,3 +113,24 @@ ii. Rotation: To maintain balance after insertions or deletions, WBTs use rotati
 
 - WBTs are mainly used in real-time systems, Game and AI, and Netwotk Routes
 - These applications benefit from the properties of WBTs, such as efficient balancing based on weights, which ensures that operations remain fast even as the dataset changes. By maintaining logarithmic time complexity for operations, WBTs are suitable for a wide range of dynamic and performance-critical applications.
+
+5. Cartesian Tree
+### Characteristics
+A Cartesian Tree is a binary tree derived from a sequence of numbers. It combines properties of a heap and a binary search tree.
+Heap Property: Every node in the tree has a value greater than or equal to any value in its subtree (max-heap).
+Binary Search Tree (BST) Property: Inorder traversal of the Cartesian tree results in the original sequence of numbers.
+
+### Applications
+Range Minimum Query (RMQ): Cartesian trees are often used for RMQ problems where you need to quickly find the minimum element in a range of an array.
+Suffix Array Construction: Cartesian trees help in efficiently building suffix arrays, which are used in text processing and string matching algorithms.
+Priority Queue Implementation: Since a Cartesian tree combines heap properties, it can also be used to implement priority queues.
+
+6. Segment Tree
+### Characteristics
+A Segment Tree is a binary tree used for storing information about intervals or segments. It allows querying which of the stored segments contain a given point efficiently.
+Each node represents an interval, and the tree is typically built to support efficient range queries and updates.
+
+### Applications
+Range Queries: Segment trees are used for answering range queries like sum, minimum, maximum, and greatest common divisor (GCD) over a segment of an array.
+Dynamic Range Queries: Unlike other data structures, Segment trees allow modifications to the array, with queries still being processed in logarithmic time.
+Lazy Propagation: Used in segment trees to update a range of values lazily, which means the updates are only applied when necessary, optimizing performance.
