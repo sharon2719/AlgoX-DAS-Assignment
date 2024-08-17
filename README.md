@@ -133,4 +133,3 @@ Each node represents an interval, and the tree is typically built to support eff
 ### Applications
 Range Queries: Segment trees are used for answering range queries like sum, minimum, maximum, and greatest common divisor (GCD) over a segment of an array.
 Dynamic Range Queries: Unlike other data structures, Segment trees allow modifications to the array, with queries still being processed in logarithmic time.
-Lazy Propagation: Used in segment trees to update a range of values lazily, which means the updates are only applied when necessary, optimizing performance.
